@@ -4,9 +4,11 @@
   "description": "CLI for analyzing users and repositories on GitHub",
   "module": "index.ts",
   "type": "module",
+  "main": "dist/index.js",
   "bin": {
-    "github-stack-cli": "./index.ts"
+    "github-stack": "./dist/index.js"
   },
+  "files": ["dist"],
   "scripts": {
     "dev": "bun index.ts",
     "start": "bun index.ts",
@@ -17,7 +19,10 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
-    "prepare": "bun run format && bun run lint && bun test"
+    "prepare": "bun run format && bun run lint && bun test",
+    "clean": "rm -rf dist",
+    "build": "tsc -p tsconfig.build.json",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "github",
